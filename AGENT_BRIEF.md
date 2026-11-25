@@ -31,15 +31,42 @@ iOS
   crashes twice, or after 4 different attempts on the same blocked step.
 - Write everything under `results/<persona>/`. Nothing else.
 
-## What to check (adapt to your app)
-1. First launch and onboarding until the main screen.
-2. The persona's goal (personas.json, `goal`).
-3. Layout on THIS device: cut text, buttons hidden by the keyboard, notch or home bar,
-   large text sizes, dark mode contrast.
-4. Error and empty states: no network answer, empty lists, wrong input.
-5. Accessibility: when `screen.py` ends with an `accessibility check` line (controls with no
+## About the app
+Khol is an offline training companion for dry fire and live fire, rifle and carbine
+first. Its core is Khol Timer: the phone is the shot timer (a start beep, then it hears
+or is tapped for each shot). There are no accounts, no sign-up, no e-mail and no
+network: everything stays on the phone.
+
+## Expected on this emulator (not bugs)
+- The emulator has no real microphone input, so the app cannot hear a dry trigger
+  press or a shot. Calibration reporting that it heard nothing is expected. How the app
+  handles it is in scope: does it explain, and does it offer timing by tapping?
+- You cannot hear beeps. Judge the timer from what the screen shows.
+- Dry-fire sessions always start with the safety clearing checklist. That is by design;
+  report only if it is confusing or hard to get through.
+- Sharing or "send by mail" may find no app to open. Report it only if the app gives no
+  word at all.
+
+## What to check
+1. First launch: the safety briefing and terms, the first-string screen and its
+   microphone request (grant it unless your persona refuses), until Home.
+2. The persona's goal (personas.json, `goal`). Khol Timer on Home is the main feature:
+   Dry / Live, START, the string, its result and FIX.
+3. Layout on THIS device: cut or broken words, text over the system bars, large text
+   sizes, dark mode contrast. The language must follow the phone's (German and Ukrainian
+   are shipped; English elsewhere). Report any English left on a German or Ukrainian
+   screen, and any Russian anywhere.
+4. Empty and error states: History and Progress with nothing trained, a refused
+   permission, a typed number out of range, leaving a run in the middle (system Back).
+5. Words a new rifle owner would not know (par, split, string): is there an explanation
+   close by?
+6. Accessibility: when `screen.py` ends with an `accessibility check` line (controls with no
    name, touch targets under 48 dp / 44 pt), look at those controls on the screenshot. Report
    each kind once, with the screens where you saw it: minor, unless it stops a task.
+
+## Out of scope
+Shot detection accuracy, reminders and notifications at their time, the home-screen
+widget, in-app purchases (there are none).
 
 ## Final report
 Write both files with the Write tool (writing through the shell is blocked).
